@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CarVerse - Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="images\jpg" href="home/Title.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo-text" onclick="window.location.href='index.html'">CarVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html" target="_blank">Login</a>
+      <a href="contact.html" target="_blank">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="brand-title" id="brandTitle">Car Models</h1>
+    <p class="brand-subtitle" id="brandSubtitle">
+      Loading models…
+    </p>
+
+    <div class="models-grid" id="modelsGrid"></div>
+
+    <a href="index.html" class="back-btn">← Back to Companies</a>
+  </main>
+
+  <footer>
+    © <span id="year"></span> CarVerse. All rights reserved.
+  </footer>
+
+  <script>
+
+const carData = {
+  "Toyota": [
+    { name: "Fortuner", type: "SUV", year: "2024", image: "images/models/toyota-fortuner.jpg" },
+    { name: "Hyryder", type: "Sedan", year: "2024", image: "images/models/toyota-camry.jpg" },
+    { name: "Innova", type: "MPV", year: "2024", image: "images/models/toyota-innova.jpg" }
+  ],
+
+  "BMW": [
+    { name: "M4", type: "Sports Coupe", year: "2024", image: "Company/BMW/M4/bg.jpg" },
+    { name: "X7", type: "SUV", year: "2024", image: "Company/BMW/X7/bg.jpg" },
+    { name: "i8", type: "Hybrid", year: "2023", image: "Company/BMW/i8/bg.jpg" }
+  ],
+
+  "Mercedes-Benz": [
+    { name: "Maybach", type: "Sedan", year: "2024", image: "images/models/mercedes-cclass.jpg" },
+    { name: "AMG", type: "Sedan", year: "2024", image: "images/models/mercedes-eclass.jpg" },
+    { name: "GLA", type: "SUV", year: "2024", image: "images/models/mercedes-gla.jpg" }
+  ],
+
+  "Audi": [
+    { name: "A4", type: "Sedan", year: "2024", image: "images/models/audi-a4.jpg" },
+    { name: "Q7", type: "SUV", year: "2024", image: "images/models/audi-q7.jpg" },
+    { name: "R8", type: "Sports", year: "2023", image: "images/models/audi-r8.jpg" }
+  ],
+
+  "Tesla": [
+    { name: "Cyber Truck", type: "Electric Sedan", year: "2024", image: "images/models/tesla-models.jpg" },
+    { name: "Model Y", type: "Electric Sedan", year: "2024", image: "images/models/tesla-model3.jpg" },
+    { name: "Model X", type: "Electric SUV", year: "2024", image: "images/models/tesla-modelx.jpg" }
+  ],
+
+  "Hyundai": [
+    { name: "i20", type: "Hatchback", year: "2024", image: "images/models/hyundai-i20.jpg" },
+    { name: "Creta", type: "SUV", year: "2024", image: "images/models/hyundai-creta.jpg" },
+    { name: "Verna", type: "Sedan", year: "2024", image: "images/models/hyundai-verna.jpg" }
+  ],
+
+  "Honda": [
+    { name: "City", type: "Sedan", year: "2024", image: "images/models/honda-city.jpg" },
+    { name: "Civic", type: "Sedan", year: "2023", image: "images/models/honda-civic.jpg" },
+    { name: "CR-V", type: "SUV", year: "2023", image: "images/models/honda-crv.jpg" }
+  ],
+
+  "Ford": [
+    { name: "Mustang", type: "Sports", year: "2024", image: "images/models/ford-mustang.jpg" },
+    { name: "Endeavour", type: "SUV", year: "2023", image: "images/models/ford-endeavour.jpg" },
+    { name: "F-150", type: "Pickup", year: "2024", image: "images/models/ford-f150.jpg" }
+  ],
+
+  "Kia": [
+    { name: "Seltos", type: "SUV", year: "2024", image: "images/models/kia-seltos.jpg" },
+    { name: "EV6", type: "Compact SUV", year: "2024", image: "images/models/kia-sonet.jpg" },
+    { name: "Carnival", type: "MPV", year: "2023", image: "images/models/kia-carnival.jpg" }
+  ],
+
+  "Volkswagen": [
+    { name: "Polo", type: "Hatchback", year: "2023", image: "images/models/vw-polo.jpg" },
+    { name: "Virtus", type: "Sedan", year: "2024", image: "images/models/vw-virtus.jpg" },
+    { name: "Taigun", type: "SUV", year: "2024", image: "images/models/vw-taigun.jpg" }
+  ]
+};
+
+const modelRoutes = {
+  Toyota: {
+    Fortuner: "models/toyota/fortuner.html",
+    Hyryder: "models/toyota/hyryder.html",
+    Innova: "models/toyota/innova.html"
+  },
+  BMW: {
+    M4: "Company/BMW/M4/carmodel.html",
+    X7: "Company/BMW/X7/carmodel.html",
+    i8: ""
+  },
+  "Mercedes-Benz": {
+    Maybach: "models/mercedes/maybach.html",
+    AMG: "models/mercedes/amg.html",
+    GLA: "models/mercedes/gla.html"
+  },
+  Audi: {
+    A4: "models/audi/a4.html",
+    Q7: "models/audi/q7.html",
+    R8: "models/audi/r8.html"
+  },
+  Tesla: {
+    "Cyber Truck": "models/tesla/cybertruck.html",
+    "Model Y": "models/tesla/modely.html",
+    "Model X": "models/tesla/modelx.html"
+  },
+  Hyundai: {
+    i20: "models/hyundai/i20.html",
+    Creta: "models/hyundai/creta.html",
+    Verna: "models/hyundai/verna.html"
+  }
+};
+
+
+/* Model Background */
+const brandBackgrounds = {
+  "Toyota": "",
+  "BMW": "Company/BMW/bg.png",
+  "Mercedes-Benz": "",
+  "Audi": "",
+  "Tesla": "",
+  "Hyundai": "",
+  "Honda": "",
+  "Ford": "",
+  "Kia": "",
+  "Volkswagen": ""
+};
+
+
+const params = new URLSearchParams(window.location.search);
+const brand = params.get("brand");
+
+
+const brandTitle = document.getElementById("brandTitle");
+const brandSubtitle = document.getElementById("brandSubtitle");
+const modelsGrid = document.getElementById("modelsGrid");
+
+
+if (brand && carData[brand]) {
+
+  /* Page background */
+  if (brandBackgrounds[brand]) {
+    document.body.style.backgroundImage = `url(${brandBackgrounds[brand]})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed";
+  }
+
+  
+  brandTitle.textContent = `${brand} Models`;
+  brandSubtitle.textContent = `Explore the latest and popular models from ${brand}`;
+
+  
+  carData[brand].forEach(model => {
+    const card = document.createElement("div");
+card.className = "model-card";
+
+card.style.backgroundImage = `url(${model.image})`;
+card.style.backgroundSize = "cover";        
+card.style.backgroundPosition = "center";   
+card.style.backgroundRepeat = "no-repeat";
+
+
+    card.innerHTML = `
+      <div class="model-overlay">
+        <div class="model-name">${model.name}</div>
+        <div class="model-info">
+          Type: ${model.type}<br>
+          Year: ${model.year}
+        </div>
+      </div>
+    `;
+
+    card.addEventListener("click",  () => {
+    const page = modelRoutes[brand]?.[model.name] ;
+    if (page) {
+      window.open(page, "_blank");  
+    } else {
+      alert("Model page not found");
+    }
+  });
+
+
+    modelsGrid.appendChild(card);
+  });
+
+} else {
+
+  
+  brandTitle.textContent = "Brand Not Found";
+  brandSubtitle.textContent = "Please go back and select a valid company.";
+
+  const msg = document.createElement("div");
+  msg.className = "no-data";
+  msg.textContent = "Use the Back button to choose a car brand again.";
+  modelsGrid.appendChild(msg);
+}
+
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

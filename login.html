@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CarVerse — Login</title>
+  <link rel="icon" type="images\jpg" href="home/Title.png" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">CarVerse</div>
+    <nav>
+      <a href="index.html" target="_blank">Home</a>
+      <a href="contact.html" target="_blank">Contact</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="container">
+      <section class="intro">
+        <h1>Welcome back to <span class="accent">CarVerse</span></h1>
+        <p>Sign in to access your saved cars, build collections, and discover specs. Use your account to quickly explore models and save favorites.</p>
+        <h3>Top Car Companies</h3>
+        <p>Click on a company in the Brands page to view its various models. Not registered yet? Create an account below.</p>
+      </section>
+
+      <aside class="card">
+        <h2>Sign in</h2>
+        <p>Use your CarVerse account to log in</p>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email or username</label>
+            <input id="email" name="email" type="text" placeholder="you@domain.com or username" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" required />
+          </div>
+
+          <div class="form-row">
+            <label class="remember"><input id="remember" type="checkbox" /> Remember me</label>
+            <a class="forgot" href="#">Forgot?</a>
+          </div>
+
+          <button class="btn" type="submit">Sign in</button>
+
+          <div class="small">or sign in with</div>
+          <div class="socials">
+            <div class="social-btn">Google</div>
+            <div class="social-btn">Facebook</div>
+          </div>
+
+          <div class="small">Don't have an account? <a href="#">Create one</a></div>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e)
+    {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if(!email || !pass){ alert('Please fill both fields'); return; }
+      if(pass.length < 6){ alert('Password must be at least 6 characters'); return; }
+      alert('Welcome back, ' + (email.includes('@') ? email.split('@')[0] : email) );
+
+    });
+  </script>
+</body>
+</html>

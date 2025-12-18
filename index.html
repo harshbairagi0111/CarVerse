@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CarVerse - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="images\jpg" href="home/Title.png" />
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+<body>
+  <header>
+    <div class="logo-text">CarVerse</div>
+    <nav>
+      <a href="#" >Home</a>
+      <a href="login.html" target="_blank">Login</a>
+      <a href="contact.html" target="_blank">Contact</a>
+    </nav>
+  </header>
+
+  <div class="bg">
+    <video autoplay loop muted play-inline class="bg-video">
+      <source src="home/bg.mp4" type="video/mp4">
+      <div></div>
+    </video>
+
+  </div>
+  
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to <span class="hero-highlight">CarVerse</span></h1>
+      <p>
+        Explore the universe of cars. Select a brand to discover its popular models,
+        specs and more. Click on any company card below to see all the models from that brand.
+      </p>
+    </div>
+  </section>
+
+  <section class="companies-section" id="brands">
+    <h2 class="section-title">Top Car Companies</h2>
+    <p class="section-subtitle">Click on a company to view its various models.</p>
+
+    <div class="companies-grid" id="companiesGrid">
+  
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> CarVerse. All rights reserved.
+  </footer>
+
+  <script>
+    
+    const companies = [
+      { name: "BMW",     country: "Germany", bg: "home/bmw.jpeg" },
+      { name: "Mercedes-Benz", country: "Germany", bg: "home/mercedes.jpeg" },
+      { name: "Kia",     country: "South Korea", bg: "home/kia.jpeg" },
+      { name: "Tesla",   country: "USA", bg: "home/tesla.jpeg" },
+      { name: "Ford",    country: "USA",  bg: "home/ford.jpeg" },
+      { name: "Hyundai", country: "South Korea", bg: "home/hyundai.jpeg" },
+      { name: "Honda",   country: "Japan", bg: "home/honda.jpeg" },
+      { name: "Audi",    country: "Germany", bg: "home/audi.jpeg" },
+      { name: "Toyota",  country: "Japan",   bg: "home/toyota.jpeg" },
+      { name: "More", isMoreButton: true }
+      
+    ];
+
+    const grid = document.getElementById("companiesGrid");
+
+    
+    companies.forEach(company => {
+    const card = document.createElement("div");
+    card.className = "company-card";
+
+    // 👉 If it's the More button
+    if (company.isMoreButton) {
+        card.style.background = "linear-gradient(135deg, #444, #111)";
+        card.innerHTML = `
+            <div class="company-name" style="font-size: 28px;">More</div>
+        `;
+
+        card.addEventListener("click", () => {
+            window.open("morecomp.html", "_blank");
+        });
+
+        grid.appendChild(card);
+        return; 
+    }
+
+    // Normal cards continue here…
+    if (company.bg) {
+        card.style.background = `
+            linear-gradient(135deg, rgba(16,23,38,0.55), rgba(32,42,60,0.35)),
+            url('${company.bg}') center/cover no-repeat
+        `;
+    }
+
+    card.innerHTML = `
+        <div class="company-logo">
+            <img src="${company.logo || ''}" alt="${company.name} logo" onerror="this.style.display='none';">
+        </div>
+        <div class="company-name">${company.name}</div>
+        <div class="company-country">${company.country}</div>
+    `;
+
+    card.addEventListener("click", () => {
+    const brand = encodeURIComponent(company.name);
+    window.open(`models.html?brand=${brand}`, "_blank");  // NEW PAGE
+
+ 
+});
+
+
+    grid.appendChild(card);
+});
+    
+    document.getElementById("year").textContent = new Date().getFullYear();         
+  </script>
+</body>
+</html>
